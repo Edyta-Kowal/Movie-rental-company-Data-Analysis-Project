@@ -1,0 +1,26 @@
+-- Top 10 cities within the top 10 countries in terms of total revenue
+SELECT city.city,
+              country.country,
+              COUNT(DISTINCT rental.rental_id) AS number_of_rentals,
+SUM(payment.amount) AS revenue_total
+FROM  payment
+INNER JOIN rental USING(customer_id, rental_id)
+INNER JOIN customer USING(customer_id)
+INNER JOIN address USING(address_id)
+INNER JOIN city USING(city_id)
+INNER JOIN country USING(country_id)
+WHERE country IN (
+-- top 10 countries for Rockbuster in terms of revenue
+	SELECT country.country
+	FROM   payment
+	INNER JOIN rental USING(customer_id)
+	INNER JOIN customer USING(customer_id)
+	INNER JOIN address USING(address_id)
+	INNER JOIN city USING(city_id)
+	INNER JOIN country USING(country_id)
+	GROUP BY country
+	ORDER BY SUM(payment.amount) DESC
+	LIMIT 10)
+GROUP BY city, country
+ORDER BY  revenue_total DESC
+LIMIT 10;
