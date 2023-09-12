@@ -1,3 +1,3 @@
 # Movie-rental-company-Data-Analysis-Project
-The goal of the project is to help with the launch strategy for the new online video service. 
+This project involves helping Rockbuster Stealth LLC, a former movie rental store chain, adapt to competition from streaming services by launching an online video rental service. I used SQL to manage and analyze their data, addressing various business queries from different departments and presenting my findings ultimately acquiring valuable SQL skills applicable across industries. Data: http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip
 This project was created as part of the 'Data bases &amp; SQL for Analysts' course in the CareerFoundry Data Analyst program.
