@@ -1,0 +1,33 @@
+-- create CTE that finds the top 5 customers in the top 10 cities
+WITH top_5_customer_total_amount_paid_cte 
+AS       	(SELECT 
+		customer.customer_id,	
+		customer.first_name || ' ' || last_name AS customer_name,
+		SUM(payment.amount) AS total_amount_paid,
+		country.country,
+		city.city
+	FROM customer
+	INNER JOIN rental USING(customer_id)
+	INNER JOIN payment USING(rental_id)
+	INNER JOIN address USING(address_id)
+	INNER JOIN city USING(city_id)
+	INNER JOIN country USING(country_id)
+	GROUP BY customer.customer_id,
+		customer_name,
+		country.country,
+		city.city
+	HAVING city IN ('Aurora',
+		'Atlixco',
+		'Xintai',
+		'Adoni',
+		'Dhule (Dhulia)',
+		'Kurashiki',
+		'Pingxiang',			
+		'Sivas',
+		'Celaya',
+		'So Leopoldo') 
+	ORDER BY SUM(payment.amount) DESC
+	LIMIT 5)
+-- count average amount paid by the top 5 customers
+SELECT ROUND(AVG(total_amount_paid), 2) AS top_5_customers_average
+FROM	top_5_customer_total_amount_paid_cte;
