@@ -1,0 +1,17 @@
+-- Movies that contributed the most revenue gain
+
+SELECT film.title AS title,
+              category.name AS category,
+               film.rental_rate,
+              COUNT(rental.rental_id) AS rentals_total,
+              SUM(payment.amount) AS sales_total
+FROM  film
+JOIN inventory USING(film_id)
+JOIN rental USING(inventory_id)
+JOIN payment USING(rental_id)
+JOIN film_category USING(film_id)
+JOIN category USING(category_id)
+GROUP BY
+            film.title, category.name, film.rental_rate
+ORDER BY sales_total DESC
+LIMIT 10;
