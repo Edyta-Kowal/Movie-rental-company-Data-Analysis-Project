@@ -9,34 +9,32 @@ Rockbuster Stealth LLC is a movie rental company that used to have stores around
 Transition to a digital streaming model, maximize revenue, understand customer behavior, expand globally, and rival streaming giants.
 
 ## Objectives:
-Digital Transformation: Shift to an online platform.
-Revenue Optimization: Identify top-performing movies.
-Customer Insight: Understand customer preferences.
-Global Expansion: Explore international markets.
+Digital Transformation: Shift to an online platform.  
+Revenue Optimization: Identify top-performing movies.  
+Customer Insight: Understand customer preferences.  
+Global Expansion: Explore international markets.  
 Competitive Edge: Compete with streaming giants through unique offerings.
 
 ## My Role:
 As a data analyst in the BI department, I'll load and analyze data, provide insights, and support the 2020 company strategy by informing data-driven decisions.
 
 ## Data:
-Provided by CareerFoundry in a Project Brief
-http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip
+Provided by CareerFoundry in a Project Brief  
+http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip  
 ### Fact Tables
-Payment
-Rental
+Payment  
+Rental  
 ### Dimension Tables
-Actor
-Address
-Category
-City
-Country
-Customer
-Fim
-Film Actor
-Film Category
-Inventory
-Language
-Staff
+Actor  
+Address  
+Category  
+City  
+Country  
+Customer  
+Fim  
+Film Actor  
+Film Category  
+Inventory  
+Language  
+Staff  
 Store
-
-
