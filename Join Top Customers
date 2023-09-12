@@ -1,0 +1,41 @@
+-- top 5 customers within the top 10 cities from top 10 countries
+
+SELECT customer.customer_id,	
+              customer.first_name || ' ' || last_name AS customer_name,
+              country.country,
+              city.city,
+              SUM(payment.amount) AS total_amount_paid,
+              COUNT(DISTINCT rental.rental_id) AS number_of_rentals
+FROM   customer
+INNER JOIN rental USING(customer_id)
+INNER JOIN payment USING(rental_id)
+INNER JOIN address USING(address_id)
+INNER JOIN city USING(city_id)
+INNER JOIN country USING(country_id)
+GROUP BY customer.customer_id,
+                    customer_name,
+                    country.country,
+                    city.city
+HAVING city IN (
+-- top 10 cities within the top 10 countries for Rockbuster in terms of customer numbers	
+    SELECT city.city
+  	FROM customer
+  	INNER JOIN address USING(address_id)
+  	INNER JOIN city USING(city_id)
+  	INNER JOIN country USING(country_id)
+  	WHERE country IN
+-- top 10 countries for Rockbuster in terms of customer numbers
+  		(SELECT  country.country
+  		FROM customer
+  		INNER JOIN address USING(address_id)
+  		INNER JOIN city USING(city_id)
+  		INNER JOIN country USING(country_id)
+  		GROUP BY country
+  		ORDER BY COUNT(customer.customer_id) DESC
+  		LIMIT 10
+  		)
+	GROUP BY country, city
+	ORDER BY COUNT(customer.customer_id) DESC
+	LIMIT 10)
+ORDER BY SUM(payment.amount) DESC
+LIMIT 5;
